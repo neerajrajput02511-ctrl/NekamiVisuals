@@ -94,10 +94,10 @@ export function VoiceGallery() {
   );
 
   return (
-    <section className="py-16 md:py-24" aria-label="Voice portfolio">
+    <section className="py-[120px] md:py-[160px]" aria-label="Voice portfolio">
       <div className="container">
         {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter voice projects">
+        <div className="flex flex-wrap gap-[18px] mb-[60px]" role="group" aria-label="Filter voice projects">
           {voiceCategories.map(cat => (
             <button
               key={cat.value}
@@ -110,7 +110,7 @@ export function VoiceGallery() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-10">
           {filtered.map((project, i) => (
             <VoiceCard key={project.id} project={project} delay={i * 60} />
           ))}
@@ -143,7 +143,7 @@ function VoiceCard({ project, delay }: { project: Project; delay: number }) {
 
   return (
     <article
-      className="group bg-card border border-border rounded-xl overflow-hidden hover:border-border-hover hover:-translate-y-1 hover:shadow-2xl transition-all duration-400 ease-out-expo"
+      className="group bg-card border border-border rounded-[24px] overflow-hidden hover:border-border-hover hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 ease-out-expo"
       style={{ animationDelay: `${delay}ms` }}
       data-cursor="listen"
     >
@@ -154,7 +154,7 @@ function VoiceCard({ project, delay }: { project: Project; delay: number }) {
             src={project.thumbnail}
             alt={project.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover rounded-t-[24px] transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent" />
 
@@ -177,7 +177,7 @@ function VoiceCard({ project, delay }: { project: Project; delay: number }) {
         </div>
 
         {/* Body */}
-        <div className="p-5">
+        <div className="p-6">
           {/* Voice style badge */}
           {project.voiceType && (
             <span className={cn('inline-block text-2xs font-semibold tracking-widest uppercase border rounded-full px-2.5 py-1 mb-3', badgeClass)}>
@@ -185,10 +185,10 @@ function VoiceCard({ project, delay }: { project: Project; delay: number }) {
             </span>
           )}
 
-          <h3 className="font-semibold tracking-tight text-base mb-1 group-hover:-translate-y-0.5 transition-transform duration-300">
+          <h3 className="font-semibold tracking-tight text-xl mb-5 group-hover:-translate-y-0.5 transition-transform duration-500">
             {project.title}
           </h3>
-          <p className="text-xs text-text-3 mb-4">{project.client}</p>
+          <p className="text-sm text-text-3 mb-4">{project.client}</p>
 
           {/* Meta row */}
           <div className="flex items-center justify-between text-xs text-text-3 border-t border-border/50 pt-4">
@@ -200,10 +200,10 @@ function VoiceCard({ project, delay }: { project: Project; delay: number }) {
       </Link>
 
       {/* Play button — outside the Link to prevent double navigation */}
-      <div className="px-5 pb-5 -mt-2">
+      <div className="px-6 pb-6 mt-2">
         <button
           onClick={togglePlay}
-          className="w-full flex items-center justify-center gap-2.5 py-2.5 rounded-full border border-border/70 text-xs font-semibold tracking-wider uppercase hover:border-border-hover hover:bg-white/5 transition-all duration-250"
+          className="w-full flex items-center justify-center gap-2.5 h-[52px] rounded-full border border-border/70 text-xs font-semibold tracking-wider uppercase hover:border-border-hover hover:bg-white/5 transition-all duration-250"
           aria-label={playing ? `Pause ${project.title}` : `Play ${project.title} preview`}
         >
           {playing ? (

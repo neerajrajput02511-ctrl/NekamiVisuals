@@ -15,9 +15,9 @@ export function AchievementsGrid() {
   }
 
   return (
-    <section className="py-16 md:py-24" aria-label="Achievements">
+    <section className="py-[120px] md:py-[160px]" aria-label="Achievements">
       <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {achievements.map((achievement, i) => (
             <AchievementCard
               key={achievement.id}
@@ -43,7 +43,7 @@ function AchievementCard({
   return (
     <article
       onClick={onClick}
-      className="group glass rounded-xl overflow-hidden border border-border hover:border-border-hover hover:-translate-y-1 hover:shadow-2xl transition-all duration-400 ease-out-expo"
+      className="group glass rounded-[24px] overflow-hidden border border-border hover:border-border-hover hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 ease-out-expo"
       style={{ animationDelay: `${delay}ms` }}
       data-cursor="view"
       role="button"
@@ -53,7 +53,7 @@ function AchievementCard({
     >
       {achievement.coverImage && (
         <div className="relative aspect-video overflow-hidden">
-          <Image src={achievement.coverImage} alt={achievement.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+          <Image src={achievement.coverImage} alt={achievement.title} fill className="object-cover rounded-t-[24px] transition-transform duration-500 group-hover:scale-105" />
         </div>
       )}
       <div className="p-6">
@@ -108,7 +108,7 @@ function AchievementModal({ achievement, onClose }: { achievement: Achievement; 
             <a
               href={achievement.certificateUrl}
               download
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border text-sm hover:border-border-hover hover:bg-white/5 transition-all duration-250"
+              className="inline-flex items-center justify-center gap-2 h-[52px] px-[28px] rounded-full border border-border text-sm hover:border-border-hover hover:bg-white/5 transition-all duration-250"
               data-cursor="open"
             >
               <Download size={14} /> Download Certificate
@@ -119,7 +119,7 @@ function AchievementModal({ achievement, onClose }: { achievement: Achievement; 
               href={achievement.externalLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border text-sm hover:border-border-hover hover:bg-white/5 transition-all duration-250"
+              className="inline-flex items-center justify-center gap-2 h-[52px] px-[28px] rounded-full border border-border text-sm hover:border-border-hover hover:bg-white/5 transition-all duration-250"
               data-cursor="open"
             >
               <ExternalLink size={14} /> Learn More
@@ -133,8 +133,8 @@ function AchievementModal({ achievement, onClose }: { achievement: Achievement; 
 
 function AchievementsEmptyState() {
   return (
-    <section className="py-24 md:py-36" aria-label="No achievements yet">
-      <div className="container flex flex-col items-center text-center gap-6">
+    <section className="py-[160px] min-h-[60vh] flex flex-col items-center justify-center" aria-label="No achievements yet">
+      <div className="container flex flex-col items-center text-center">
         {/* Minimal illustration */}
         <div className="relative w-28 h-28 mb-4" aria-hidden="true">
           <div className="absolute inset-0 rounded-full border border-border animate-pulse" />
@@ -143,7 +143,7 @@ function AchievementsEmptyState() {
             ✦
           </div>
         </div>
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-[60px]">
           Achievements Coming Soon
         </h2>
         <p className="text-base text-text-2 max-w-md leading-relaxed">

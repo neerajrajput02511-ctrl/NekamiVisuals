@@ -66,9 +66,11 @@ export default async function DesignDetailPage({ params }: { params: Promise<{ s
               {/* Left: Title & Overview */}
               <div className="lg:col-span-8">
                 <div className="mb-6 flex items-center gap-3">
-                  <span className="text-2xs font-semibold tracking-widest uppercase text-text-3 px-3 py-1 rounded-full border border-border">
-                    {project.subcategory.replace('-', ' ')}
-                  </span>
+                  {project.subcategory && (
+                    <span className="text-2xs font-semibold tracking-widest uppercase text-text-3 px-3 py-1 rounded-full border border-border">
+                      {project.subcategory.replace('-', ' ')}
+                    </span>
+                  )}
                   <span className="text-sm text-text-3">{project.year}</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter leading-none mb-8">

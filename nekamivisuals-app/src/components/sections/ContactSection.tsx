@@ -55,9 +55,9 @@ export function ContactSection() {
     <section className="py-24 md:py-36" aria-labelledby="contact-h">
       <div className="container">
         {/* Header */}
-        <div className="mb-20">
+        <div className="mb-[120px]">
           <p className="section-label mb-6">Get in Touch</p>
-          <h1 id="contact-h" className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tightest leading-none mb-8 max-w-3xl">
+          <h1 id="contact-h" className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tightest leading-none mb-[40px] max-w-3xl">
             Let&apos;s Build Something Amazing Together.
           </h1>
           <p className="text-base text-text-2 max-w-lg leading-relaxed">
@@ -66,7 +66,7 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-[120px] items-start">
           {/* Form */}
           <div>
             {submitted ? (
@@ -88,7 +88,7 @@ export function ContactSection() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-[40px]" noValidate>
                 {/* Row 1: Name + Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <FormField label="Your Name *" error={errors.name?.message}>
@@ -158,7 +158,7 @@ export function ContactSection() {
                   type="submit"
                   disabled={isSubmitting}
                   className={cn(
-                    'w-full py-4 rounded-full font-semibold text-sm tracking-wider uppercase transition-all duration-300',
+                    'w-full h-[52px] px-[28px] mt-[40px] rounded-full font-semibold text-sm tracking-wider uppercase transition-all duration-300',
                     isSubmitting
                       ? 'bg-white/20 text-text-3 cursor-not-allowed'
                       : 'bg-white text-bg hover:bg-white/90 active:scale-[0.98]'
@@ -171,8 +171,8 @@ export function ContactSection() {
           </div>
 
           {/* Sidebar */}
-          <aside className="space-y-3">
-            <div className="glass rounded-2xl p-6 mb-2">
+          <aside className="flex flex-col gap-[40px]">
+            <div className="glass rounded-[24px] p-6">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-xs font-semibold tracking-wider uppercase text-green-400">Available for work</span>
@@ -188,7 +188,7 @@ export function ContactSection() {
                 href={c.href}
                 target={c.href.startsWith('http') ? '_blank' : undefined}
                 rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="flex items-center gap-4 glass rounded-xl p-4 hover:border-border-hover transition-all duration-250 group"
+                className="flex items-center gap-4 glass rounded-xl p-4 hover:border-border-hover hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 group"
                 data-cursor="open"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-border flex items-center justify-center group-hover:border-border-hover transition-colors duration-250">

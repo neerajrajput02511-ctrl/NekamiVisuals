@@ -6,6 +6,7 @@ import { ScrollProgress } from '@/components/animations/ScrollProgress';
 import { SmoothScroll } from '@/components/animations/SmoothScroll';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://nekamivisuals.com'),
   title: {
     default: 'NekamiVisuals — Creative Freelancer · Video, Voice & Design',
     template: '%s — NekamiVisuals',

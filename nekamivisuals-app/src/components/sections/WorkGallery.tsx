@@ -40,7 +40,7 @@ export function WorkGallery() {
   const getSpan = (i: number) => spanPattern[i % spanPattern.length] ?? 6;
 
   return (
-    <section className="py-16 md:py-24" aria-label="Project gallery">
+    <section className="py-[120px] md:py-[160px]" aria-label="Project gallery">
       <div className="container">
         {/* Controls */}
         <div className="flex flex-wrap items-center gap-4 mb-8 pb-6 border-b border-border/50">
@@ -55,7 +55,7 @@ export function WorkGallery() {
               value={query}
               onChange={e => setQuery(e.target.value)}
               aria-label="Search projects"
-              className="w-full pl-9 pr-4 py-2.5 rounded-full text-sm bg-card border border-border/70 placeholder:text-text-3 focus:border-border-hover transition-colors duration-250"
+              className="w-full h-[52px] pl-10 pr-4 rounded-[16px] text-base bg-card border border-border/70 placeholder:text-text-3 focus:border-border-hover transition-colors duration-250 mb-8"
             />
           </div>
 
@@ -81,7 +81,7 @@ export function WorkGallery() {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter by category">
+        <div className="flex flex-wrap gap-[18px] mt-10 mb-[60px]" role="group" aria-label="Filter by category">
           {workCategories.map(cat => (
             <button
               key={cat.value}
@@ -119,7 +119,7 @@ function WorkCard({ project, span, delay }: { project: Project; span: number; de
 
   return (
     <article
-      className="group relative bg-card border border-border rounded-lg overflow-hidden hover:border-border-hover hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-400 ease-out-expo"
+      className="group relative bg-card border border-border rounded-3xl overflow-hidden hover:border-border-hover hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 ease-out-expo"
       style={{
         gridColumn: `span ${span}`,
         animationDelay: `${delay}ms`,
@@ -136,7 +136,7 @@ function WorkCard({ project, span, delay }: { project: Project; span: number; de
             alt={project.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+            className="object-cover rounded-t-3xl transition-transform duration-500 ease-out-expo group-hover:scale-105"
             loading="lazy"
           />
 
@@ -159,22 +159,24 @@ function WorkCard({ project, span, delay }: { project: Project; span: number; de
         </div>
 
         {/* Body */}
-        <div className="p-4 md:p-5 border-t border-border/50">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-2xs font-semibold tracking-widest uppercase text-text-3">
+        <div className="p-6 border-t border-border/50">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-xs font-semibold tracking-widest uppercase text-text-3">
               {project.category}
             </span>
-            <span className="text-2xs text-text-3">{project.year}</span>
+            <span className="text-xs text-text-3">{project.year}</span>
           </div>
-          <h3 className="font-semibold tracking-tight text-base leading-snug group-hover:-translate-y-0.5 transition-transform duration-300">
+          <h3 className="font-semibold tracking-tight text-xl mb-5 leading-snug group-hover:-translate-y-0.5 transition-transform duration-500">
             {project.title}
           </h3>
-          {project.client && (
-            <p className="text-xs text-text-3 mt-1">{project.client}</p>
-          )}
-          {project.duration && (
-            <p className="text-xs text-text-3 mt-0.5 font-medium">{project.duration}</p>
-          )}
+          <div className="mt-4">
+            {project.client && (
+              <p className="text-sm text-text-3">{project.client}</p>
+            )}
+            {project.duration && (
+              <p className="text-sm text-text-3 mt-1 font-medium">{project.duration}</p>
+            )}
+          </div>
         </div>
       </Link>
     </article>

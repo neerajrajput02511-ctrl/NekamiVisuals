@@ -55,11 +55,11 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-out-expo',
+          'fixed top-6 left-0 right-0 z-50 transition-all duration-400 ease-out-expo',
           scrolled
-            ? 'glass border-b border-border/50 py-4'
-            : 'bg-transparent py-5',
-          hidden && !mobileOpen && '-translate-y-full'
+            ? 'glass border border-border/50 py-4 mx-6 rounded-2xl'
+            : 'bg-transparent h-[72px] flex items-center',
+          hidden && !mobileOpen && '-translate-y-[calc(100%+24px)]'
         )}
         role="banner"
       >
@@ -71,7 +71,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Primary navigation">
+          <nav className="hidden md:flex items-center gap-10" aria-label="Primary navigation">
             {navLinks.map(link => (
               <Link
                 key={link.href}
@@ -89,10 +89,10 @@ export function Navbar() {
           </nav>
 
           {/* Right */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-8">
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold tracking-wider uppercase border border-border rounded-full hover:border-border-hover hover:bg-white/5 transition-all duration-250"
+              className="hidden md:inline-flex items-center justify-center gap-1.5 h-[52px] px-[28px] text-xs font-semibold tracking-wider uppercase border border-border rounded-full hover:border-border-hover hover:bg-white/5 transition-all duration-250"
             >
               Hire Me
             </Link>

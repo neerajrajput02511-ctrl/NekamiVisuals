@@ -23,10 +23,10 @@ export function DesignGallery() {
   );
 
   return (
-    <section className="py-16 md:py-24" aria-label="Design gallery">
+    <section className="py-[120px] md:py-[160px]" aria-label="Design gallery">
       <div className="container">
         {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter designs">
+        <div className="flex flex-wrap gap-[18px] mb-[60px]" role="group" aria-label="Filter designs">
           {designCategories.map(cat => (
             <button
               key={cat.value}
@@ -67,7 +67,7 @@ function DesignCard({ project, delay }: {
     <div className="masonry-item" style={{ animationDelay: `${delay}ms` }} data-cursor="view">
       <Link
         href={`/design/${project.slug}`}
-        className="group block relative rounded-xl overflow-hidden border border-border hover:border-border-hover transition-all duration-400 ease-out-expo"
+        className="group block relative rounded-[24px] overflow-hidden border border-border hover:border-border-hover hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 ease-out-expo"
         aria-label={`View ${project.title}`}
       >
         <div className="relative overflow-hidden" style={{ aspectRatio: aspect }}>
@@ -75,7 +75,7 @@ function DesignCard({ project, delay }: {
             src={project.thumbnail}
             alt={project.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
           {/* Dark overlay */}

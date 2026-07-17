@@ -74,13 +74,13 @@ export function HeroSection() {
           <div className="flex items-center gap-4 flex-wrap animate-fadeIn" style={{ animationDelay: '0.7s', opacity: 0, animationFillMode: 'forwards' }}>
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-bg text-sm font-semibold rounded-full hover:bg-white/90 active:scale-[0.98] transition-all duration-250"
+              className="inline-flex items-center justify-center gap-2 h-[52px] px-[28px] bg-white text-bg text-sm font-semibold rounded-full hover:bg-white/90 active:scale-[0.98] transition-all duration-250"
             >
               Explore Work →
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-sm font-medium hover:border-border-hover hover:bg-white/5 transition-all duration-250"
+              className="inline-flex items-center justify-center gap-2 h-[52px] px-[28px] rounded-full border border-border text-sm font-medium hover:border-border-hover hover:bg-white/5 transition-all duration-250"
             >
               Hire Me
             </Link>

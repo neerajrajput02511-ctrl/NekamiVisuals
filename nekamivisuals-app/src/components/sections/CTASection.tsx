@@ -13,7 +13,7 @@ export function CTASection({ label, heading, cta, href, className }: CTASectionP
   return (
     <section
       className={cn(
-        'py-24 md:py-36 border-t border-border/50 relative overflow-hidden',
+        'py-[120px] md:py-[160px] border-t border-border/50 relative overflow-hidden',
         className
       )}
       aria-label="Call to action"
@@ -34,7 +34,7 @@ export function CTASection({ label, heading, cta, href, className }: CTASectionP
         />
         <Link
           href={href}
-          className="mt-2 inline-flex items-center gap-2 px-8 py-4 bg-white text-bg text-sm font-semibold rounded-full hover:bg-white/90 active:scale-[0.98] transition-all duration-250"
+          className="mt-2 inline-flex items-center justify-center gap-2 h-[52px] px-[28px] bg-white text-bg text-sm font-semibold rounded-full hover:bg-white/90 active:scale-[0.98] transition-all duration-250"
         >
           {cta} →
         </Link>
