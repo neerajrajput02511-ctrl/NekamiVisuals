@@ -31,7 +31,6 @@ export default async function WorkPage() {
 
   return (
     <>
-      <Navbar />
       <main>
         <PageHeader
           label="Portfolio"

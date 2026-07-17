@@ -55,7 +55,6 @@ export default async function VoiceDetailPage({ params }: { params: Promise<{ sl
 
   return (
     <>
-      <Navbar />
       <main>
         {/* Back Link */}
         <div className="pt-32 pb-8 border-b border-border/50">

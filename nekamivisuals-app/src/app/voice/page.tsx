@@ -27,7 +27,6 @@ export default async function VoicePage() {
 
   return (
     <>
-      <Navbar />
       <main>
         <PageHeader
           label="Voice Over"

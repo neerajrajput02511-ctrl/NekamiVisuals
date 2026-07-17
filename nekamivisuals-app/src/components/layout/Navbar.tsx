@@ -17,16 +17,11 @@ const navLinks = [
 export function Navbar() {
   const pathname    = usePathname();
   const [scrolled,  setScrolled]  = useState(false);
-  const [hidden,    setHidden]    = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const lastY = useRef(0);
 
   useEffect(() => {
     const handle = () => {
-      const y = window.scrollY;
-      setScrolled(y > 40);
-      setHidden(y > lastY.current && y > 120);
-      lastY.current = y;
+      setScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handle, { passive: true });
     return () => window.removeEventListener('scroll', handle);
@@ -55,11 +50,10 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          'fixed top-6 left-0 right-0 z-50 transition-all duration-400 ease-out-expo',
+          'fixed top-0 md:top-6 left-0 right-0 z-50 transition-all duration-400 ease-out-expo',
           scrolled
-            ? 'glass border border-border/50 py-4 mx-6 rounded-2xl'
-            : 'bg-transparent h-[72px] flex items-center',
-          hidden && !mobileOpen && '-translate-y-[calc(100%+24px)]'
+            ? 'glass border-b md:border md:border-border/50 py-4 md:mx-6 md:rounded-2xl bg-bg/80 backdrop-blur-xl'
+            : 'bg-transparent h-[72px] flex items-center px-4 md:px-0'
         )}
         role="banner"
       >
@@ -71,7 +65,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-10" aria-label="Primary navigation">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-10" aria-label="Primary navigation">
             {navLinks.map(link => (
               <Link
                 key={link.href}
@@ -92,7 +86,7 @@ export function Navbar() {
           <div className="flex items-center gap-8">
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center justify-center gap-1.5 h-[52px] px-[28px] text-xs font-semibold tracking-wider uppercase border border-border rounded-full hover:border-border-hover hover:bg-white/5 transition-all duration-250"
+              className="hidden md:inline-flex items-center justify-center gap-1.5 h-[48px] lg:h-[52px] px-[24px] lg:px-[28px] whitespace-nowrap text-xs font-semibold tracking-wider uppercase border border-border rounded-full hover:border-border-hover hover:bg-white/5 transition-all duration-250"
             >
               Hire Me
             </Link>

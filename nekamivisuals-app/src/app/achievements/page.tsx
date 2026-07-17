@@ -25,7 +25,6 @@ export default async function AchievementsPage() {
 
   return (
     <>
-      <Navbar />
       <main>
         <PageHeader
           label="Track Record"

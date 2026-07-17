@@ -27,6 +27,7 @@ export interface Project {
   thumbnail: string;
   coverImage?: string;
   videoUrl?: string;
+  youtubeUrl?: string;
   audioUrl?: string;
   gallery: string[];
   client: string;
@@ -86,6 +87,7 @@ export interface Achievement {
   badgeUrl?: string;
   externalLink?: string;
   status: PublishStatus;
+  order?: number;
 }
 
 export interface Message {

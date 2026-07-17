@@ -54,7 +54,6 @@ export default async function WorkDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <>
-      <Navbar />
       <main>
         {/* Back Link */}
         <div className="pt-32 pb-8 border-b border-border/50">

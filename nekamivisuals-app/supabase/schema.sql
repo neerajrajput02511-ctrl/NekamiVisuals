@@ -30,6 +30,8 @@ CREATE TABLE public.projects (
   microphone text,
   "colorPalette" text[] DEFAULT '{}'::text[],
   typography jsonb DEFAULT '{}'::jsonb,
+  "youtubeUrl" text,
+  "audioUrl" text,
   
   -- Meta
   year integer,

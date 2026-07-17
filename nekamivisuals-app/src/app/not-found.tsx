@@ -4,7 +4,6 @@ import { Navbar } from '@/components/layout/Navbar';
 export default function NotFound() {
   return (
     <>
-      <Navbar />
       <main className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
         {/* Big 404 */}
         <div

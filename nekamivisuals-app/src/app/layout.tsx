@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import '@/app/globals.css';
 import { PageLoader } from '@/components/animations/PageLoader';
-import { CustomCursor } from '@/components/animations/CustomCursor';
 import { ScrollProgress } from '@/components/animations/ScrollProgress';
 import { SmoothScroll } from '@/components/animations/SmoothScroll';
+import { Navbar } from '@/components/layout/Navbar';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nekamivisuals.com'),
@@ -52,8 +52,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body>
         <PageLoader />
-        <CustomCursor />
         <ScrollProgress />
+        <Navbar />
         <SmoothScroll>
           {children}
         </SmoothScroll>
