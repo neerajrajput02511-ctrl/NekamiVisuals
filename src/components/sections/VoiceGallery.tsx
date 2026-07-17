@@ -26,12 +26,17 @@ export function VoiceGallery({ initialProjects = [] }: { initialProjects?: Proje
     <section className="py-[120px] md:py-[160px]" aria-label="Voice portfolio">
       <div className="container">
         {/* Filters */}
-        <div className="flex flex-wrap gap-[18px] mb-[60px]" role="group" aria-label="Filter voice projects">
+        <div className="flex flex-wrap gap-[20px] mb-[80px]" role="group" aria-label="Filter voice projects">
           {voiceCategories.map(cat => (
             <button
               key={cat.value}
               onClick={() => setActive(cat.value)}
-              className={cn('filter-pill', active === cat.value && 'active')}
+              className={cn(
+                'px-[28px] h-[52px] rounded-full font-semibold text-[14px] tracking-wider uppercase border transition-all duration-250',
+                active === cat.value 
+                  ? 'bg-white/10 border-white/20 text-white shadow-inner' 
+                  : 'bg-transparent border-border text-text-3 hover:text-text-2 hover:border-border-hover'
+              )}
             >
               {cat.label}
             </button>
@@ -39,7 +44,7 @@ export function VoiceGallery({ initialProjects = [] }: { initialProjects?: Proje
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[40px] xl:gap-[64px]">
           {filtered.map((project, i) => (
             <VoiceCard key={project.id} project={project} delay={i * 60} />
           ))}
@@ -88,13 +93,13 @@ function VoiceCard({ project, delay }: { project: Project; delay: number }) {
           <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent" />
 
           {/* Waveform overlay */}
-          <div className="absolute bottom-3 left-3 right-3 flex items-end gap-0.5 h-8">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[80%] flex items-end justify-center gap-[3px] h-[40px]">
             {Array.from({ length: 32 }).map((_, i) => {
               const h = Math.sin(i * 0.8) * 0.5 + 0.5;
               return (
                 <div
                   key={i}
-                  className={cn('flex-1 bg-white/30 rounded-sm origin-bottom', playing && 'animate-waveform')}
+                  className={cn('flex-1 bg-white/40 rounded-sm origin-bottom transition-all duration-200', playing && 'animate-waveform')}
                   style={{
                     height: `${20 + h * 80}%`,
                     animationDelay: `${i * 40}ms`,

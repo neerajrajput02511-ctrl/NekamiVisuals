@@ -23,7 +23,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="min-h-screen flex flex-col justify-end relative overflow-hidden pt-24"
+      className="min-h-screen flex flex-col justify-end relative overflow-hidden pt-[120px] md:pt-[140px]"
       aria-label="Hero"
     >
       {/* Background subtle grid */}
@@ -44,15 +44,15 @@ export function HeroSection() {
       />
 
       {/* Main content */}
-      <div className="container relative z-10 pb-24">
+      <div className="container relative z-10 pb-[120px]">
         <div className="max-w-[900px]">
-          <p className="section-label mb-8 animate-fadeIn">
+          <p className="section-label mb-[80px] animate-fadeIn">
             Neeraj Singh · NekamiVisuals
           </p>
 
           <h1
             ref={headRef}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tightest leading-none mb-10"
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-9xl font-semibold tracking-tightest leading-none mb-[32px]"
             style={{ fontFamily: 'var(--font-sans)' }}
           >
             {headingWords.map((word, i) => (
@@ -66,7 +66,7 @@ export function HeroSection() {
             ))}
           </h1>
 
-          <p className="text-base md:text-lg text-text-2 max-w-xl leading-relaxed mb-10 animate-fadeIn" style={{ animationDelay: '0.5s', opacity: 0, animationFillMode: 'forwards' }}>
+          <p className="text-base md:text-xl text-text-2 max-w-xl leading-relaxed mb-[40px] animate-fadeIn" style={{ animationDelay: '0.5s', opacity: 0, animationFillMode: 'forwards' }}>
             NekamiVisuals helps creators, brands and businesses elevate their content through
             cinematic video editing, professional voice artistry and impactful graphic design.
           </p>

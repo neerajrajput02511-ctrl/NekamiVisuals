@@ -40,13 +40,13 @@ export function WorkGallery({ initialProjects = [] }: { initialProjects?: Projec
   const getSpan = (i: number) => spanPattern[i % spanPattern.length] ?? 6;
 
   return (
-    <section className="py-[120px] md:py-[160px]" aria-label="Project gallery">
+    <section className="pb-[140px]" aria-label="Project gallery">
       <div className="container">
-        {/* Controls */}
-        <div className="flex flex-wrap items-center gap-4 mb-8 pb-6 border-b border-border/50">
+        {/* Controls block (Search & Filters) */}
+        <div className="flex flex-col mb-[48px]">
           {/* Search */}
-          <div className="relative flex-1 min-w-[200px] max-w-xs">
-            <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-3 pointer-events-none" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+          <div className="relative w-full max-w-[420px] mb-[48px]">
+            <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-text-3 pointer-events-none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
               <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
             </svg>
             <input
@@ -55,54 +55,60 @@ export function WorkGallery({ initialProjects = [] }: { initialProjects?: Projec
               value={query}
               onChange={e => setQuery(e.target.value)}
               aria-label="Search projects"
-              className="w-full h-[52px] pl-10 pr-4 rounded-[16px] text-base bg-card border border-border/70 placeholder:text-text-3 focus:border-border-hover transition-colors duration-250 mb-8"
+              className="w-full h-[56px] pl-12 pr-4 rounded-[18px] text-base bg-card border border-border/70 placeholder:text-text-3 focus:border-border-hover transition-colors duration-250"
             />
           </div>
 
-          {/* Sort */}
-          <div className="relative">
-            <select
-              value={sort}
-              onChange={e => setSort(e.target.value)}
-              aria-label="Sort projects"
-              className="pl-4 pr-8 py-2.5 rounded-full text-sm appearance-none"
-            >
-              <option value="featured">Featured</option>
-              <option value="popular">Popular</option>
-              <option value="newest">Newest</option>
-              <option value="oldest">Oldest</option>
-            </select>
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-text-3 pointer-events-none text-xs">↓</span>
+          {/* Filters & Sort */}
+          <div className="flex flex-wrap items-center justify-between gap-[20px] w-full">
+            <div className="flex flex-wrap gap-[20px]" role="group" aria-label="Filter by category">
+              {workCategories.map(cat => (
+                <button
+                  key={cat.value}
+                  onClick={() => setActive(cat.value)}
+                  className={cn(
+                    'px-[28px] h-[52px] rounded-full font-semibold text-[14px] tracking-wider uppercase border transition-all duration-250',
+                    active === cat.value 
+                      ? 'bg-white/10 border-white/20 text-white shadow-inner' 
+                      : 'bg-transparent border-border text-text-3 hover:text-text-2 hover:border-border-hover'
+                  )}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-6">
+              <div className="relative">
+                <select
+                  value={sort}
+                  onChange={e => setSort(e.target.value)}
+                  aria-label="Sort projects"
+                  className="pl-4 pr-8 h-[52px] rounded-full bg-card border border-border/70 text-[14px] appearance-none"
+                >
+                  <option value="featured">Featured</option>
+                  <option value="popular">Popular</option>
+                  <option value="newest">Newest</option>
+                  <option value="oldest">Oldest</option>
+                </select>
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-text-3 pointer-events-none text-xs">↓</span>
+              </div>
+              <span className="text-[14px] text-text-3 tracking-wider hidden md:block" aria-live="polite">
+                {filtered.length} Project{filtered.length !== 1 ? 's' : ''}
+              </span>
+            </div>
           </div>
-
-          <span className="ml-auto text-xs text-text-3 tracking-wider" aria-live="polite">
-            {filtered.length} Project{filtered.length !== 1 ? 's' : ''}
-          </span>
-        </div>
-
-        {/* Filters */}
-        <div className="flex flex-wrap gap-[18px] mt-10 mb-[60px]" role="group" aria-label="Filter by category">
-          {workCategories.map(cat => (
-            <button
-              key={cat.value}
-              onClick={() => setActive(cat.value)}
-              className={cn('filter-pill', active === cat.value && 'active')}
-            >
-              {cat.label}
-            </button>
-          ))}
         </div>
 
         {/* Grid */}
         {filtered.length === 0 ? (
           <EmptyState onReset={() => { setActive('all'); setQuery(''); }} />
         ) : (
-          <div className="editorial-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px] xl:gap-[40px]">
             {filtered.map((project, i) => (
               <WorkCard
                 key={project.id}
                 project={project}
-                span={getSpan(i)}
                 delay={i * 60}
               />
             ))}
@@ -113,30 +119,25 @@ export function WorkGallery({ initialProjects = [] }: { initialProjects?: Projec
   );
 }
 
-function WorkCard({ project, span, delay }: { project: Project; span: number; delay: number }) {
-  const aspectMap: Record<number, string> = { 8: '16/10', 4: '4/3', 12: '21/9', 6: '16/10' };
-  const aspect = aspectMap[span] ?? '16/10';
-
+function WorkCard({ project, delay }: { project: Project; delay: number }) {
   return (
     <article
-      className="group relative bg-card border border-border rounded-3xl overflow-hidden hover:border-border-hover hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 ease-out-expo"
+      className="group relative bg-card border border-border rounded-[24px] overflow-hidden hover:border-border-hover hover:-translate-y-2 transition-all duration-500 ease-out-expo shadow-sm hover:shadow-2xl"
       style={{
-        gridColumn: `span ${span}`,
         animationDelay: `${delay}ms`,
-        ['--aspect' as any]: aspect,
       }}
       data-cursor="view-project"
       role="listitem"
     >
-      <Link href={`/work/${project.slug}`} className="block" tabIndex={0}>
+      <Link href={`/work/${project.slug}`} className="block p-[24px]" tabIndex={0}>
         {/* Image */}
-        <div className="relative overflow-hidden" style={{ aspectRatio: aspect }}>
+        <div className="relative overflow-hidden rounded-[16px] aspect-video">
           <Image
             src={project.thumbnail}
             alt={project.title}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            className="object-cover rounded-t-3xl transition-transform duration-500 ease-out-expo group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]"
             loading="lazy"
           />
 
@@ -159,22 +160,22 @@ function WorkCard({ project, span, delay }: { project: Project; span: number; de
         </div>
 
         {/* Body */}
-        <div className="p-6 border-t border-border/50">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-semibold tracking-widest uppercase text-text-3">
+        <div className="pt-[24px]">
+          <div className="flex items-center justify-between mb-[16px]">
+            <span className="text-[14px] font-semibold tracking-widest uppercase text-text-3">
               {project.category}
             </span>
-            <span className="text-xs text-text-3">{project.year}</span>
+            <span className="text-[14px] text-text-3">{project.year}</span>
           </div>
-          <h3 className="font-semibold tracking-tight text-xl mb-5 leading-snug group-hover:-translate-y-0.5 transition-transform duration-500">
+          <h3 className="font-semibold tracking-tight text-[24px] mb-[20px] leading-snug group-hover:-translate-y-0.5 transition-transform duration-500">
             {project.title}
           </h3>
-          <div className="mt-4">
+          <div className="mt-[20px]">
             {project.client && (
-              <p className="text-sm text-text-3">{project.client}</p>
+              <p className="text-[16px] text-text-3">{project.client}</p>
             )}
             {project.duration && (
-              <p className="text-sm text-text-3 mt-1 font-medium">{project.duration}</p>
+              <p className="text-[16px] text-text-3 mt-1 font-medium">{project.duration}</p>
             )}
           </div>
         </div>

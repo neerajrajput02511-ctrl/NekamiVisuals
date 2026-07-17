@@ -19,12 +19,17 @@ export function DesignGallery({ initialProjects = [] }: { initialProjects?: Proj
     <section className="py-[120px] md:py-[160px]" aria-label="Design gallery">
       <div className="container">
         {/* Filters */}
-        <div className="flex flex-wrap gap-[18px] mb-[60px]" role="group" aria-label="Filter designs">
+        <div className="flex flex-wrap gap-[20px] mb-[60px]" role="group" aria-label="Filter designs">
           {designCategories.map(cat => (
             <button
               key={cat.value}
               onClick={() => setActive(cat.value)}
-              className={cn('filter-pill', active === cat.value && 'active')}
+              className={cn(
+                'px-[28px] h-[52px] rounded-full font-semibold text-[14px] tracking-wider uppercase border transition-all duration-250',
+                active === cat.value 
+                  ? 'bg-white/10 border-white/20 text-white shadow-inner' 
+                  : 'bg-transparent border-border text-text-3 hover:text-text-2 hover:border-border-hover'
+              )}
             >
               {cat.label}
             </button>

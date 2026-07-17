@@ -50,14 +50,14 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          'fixed top-0 md:top-6 left-0 right-0 z-50 transition-all duration-400 ease-out-expo',
-          scrolled
-            ? 'glass border-b md:border md:border-border/50 py-4 md:mx-6 md:rounded-2xl bg-bg/80 backdrop-blur-xl'
-            : 'bg-transparent h-[72px] flex items-center px-4 md:px-0'
+          'fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-400 ease-out-expo',
+          'w-[92%] max-w-[1440px] h-[72px] rounded-xl',
+          'glass border border-border/50 bg-bg/80 backdrop-blur-xl',
+          'flex items-center px-6 md:px-10 lg:px-12'
         )}
         role="banner"
       >
-        <div className="container flex items-center justify-between">
+        <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 font-semibold text-sm tracking-tight group" aria-label="NekamiVisuals Home">
             <span className="w-1.5 h-1.5 rounded-full bg-white group-hover:scale-150 transition-transform duration-300" />

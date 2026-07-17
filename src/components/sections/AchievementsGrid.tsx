@@ -132,17 +132,17 @@ function AchievementModal({ achievement, onClose }: { achievement: Achievement; 
 
 function AchievementsEmptyState() {
   return (
-    <section className="py-[160px] min-h-[60vh] flex flex-col items-center justify-center" aria-label="No achievements yet">
+    <section className="py-[220px] flex flex-col items-center justify-center" aria-label="No achievements yet">
       <div className="container flex flex-col items-center text-center">
         {/* Minimal illustration */}
-        <div className="relative w-28 h-28 mb-4" aria-hidden="true">
+        <div className="relative w-28 h-28 mb-[40px]" aria-hidden="true">
           <div className="absolute inset-0 rounded-full border border-border animate-pulse" />
           <div className="absolute inset-4 rounded-full border border-border/50 animate-pulse" style={{ animationDelay: '0.5s' }} />
           <div className="absolute inset-0 flex items-center justify-center text-3xl">
             ✦
           </div>
         </div>
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-[60px]">
+        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-[32px]">
           Achievements Coming Soon
         </h2>
         <p className="text-base text-text-2 max-w-md leading-relaxed">
