@@ -1,0 +1,79 @@
+/* ================================================================
+   NekamiVisuals — Custom Cursor
+================================================================ */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.cursor.visible { opacity: 1; }
+
+/* Outer ring */
+.cursor__ring {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width   0.45s var(--ease-out),
+    height  0.45s var(--ease-out),
+    border-color 0.3s,
+    background   0.3s,
+    opacity 0.3s;
+}
+
+/* Inner dot */
+.cursor__dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width  0.25s var(--ease-out),
+    height 0.25s var(--ease-out),
+    opacity 0.25s;
+}
+
+/* ── State: hovering interactive element ─ */
+.cursor.hovering .cursor__ring {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(255,255,255,0.25);
+}
+.cursor.hovering .cursor__dot {
+  width: 7px;
+  height: 7px;
+  opacity: 0.5;
+}
+
+/* ── State: clicking ─ */
+.cursor.clicking .cursor__ring {
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,0.07);
+}
+.cursor.clicking .cursor__dot {
+  width: 4px;
+  height: 4px;
+}
+
+/* ── State: on text ─ */
+.cursor.on-text .cursor__ring {
+  width: 2px;
+  height: 28px;
+  border-radius: 2px;
+  border-color: rgba(255,255,255,0.7);
+}
+.cursor.on-text .cursor__dot {
+  opacity: 0;
+}

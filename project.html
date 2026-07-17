@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project — NekamiVisuals</title>
+  <meta name="description" content="Detailed project case study by NekamiVisuals — creative video editing, voice artistry and graphic design." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/work.css" />
+  <link rel="stylesheet" href="css/cursor.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+</head>
+<body>
+
+<!-- Page Transition -->
+<div class="page-overlay" aria-hidden="true"></div>
+
+<!-- Custom Cursor -->
+<div class="cursor" aria-hidden="true">
+  <div class="cursor__ring"></div>
+  <div class="cursor__dot"></div>
+</div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ════════════════════ NAVBAR ════════════════════ -->
+<header class="navbar" role="banner">
+  <a href="index.html" class="navbar__logo" aria-label="NekamiVisuals Home">
+    <span class="navbar__logo-dot" aria-hidden="true"></span>
+    NekamiVisuals
+  </a>
+  <nav class="navbar__nav" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="work.html" class="active">Work</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="navbar__right">
+    <a href="contact.html" class="btn-hire">Hire Me</a>
+    <button class="navbar__toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="navbar__mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="work.html">Work</a>
+  <a href="achievements.html">Achievements</a>
+  <a href="contact.html">Contact</a>
+  <div class="navbar__mobile-bottom">
+    <a href="contact.html" class="btn-hire">Hire Me →</a>
+    <span class="navbar__mobile-copy">©2025 NekamiVisuals</span>
+  </div>
+</nav>
+
+<!-- ════════════════════ MAIN ════════════════════ -->
+<main>
+
+  <!-- Back link -->
+  <div style="position:fixed;top:84px;left:clamp(1.25rem,4.5vw,5rem);z-index:100;opacity:0;animation:fadeIn .8s .5s forwards">
+    <a href="work.html"
+       style="display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:500;
+              letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);
+              padding:.45rem .875rem;border:1px solid var(--border);border-radius:100px;
+              background:rgba(5,5,5,.6);backdrop-filter:blur(12px);
+              transition:color var(--dur-fast),border-color var(--dur-fast);cursor:none"
+       aria-label="Back to work gallery">
+      ← Work
+    </a>
+  </div>
+
+  <!-- Project root — populated by JS -->
+  <div id="project-root">
+    <!-- Loading state -->
+    <div style="height:100vh;display:flex;align-items:center;justify-content:center;
+                flex-direction:column;gap:1rem;color:var(--text-3)">
+      <div style="font-size:1.5rem;animation:rotate 2s linear infinite">✦</div>
+      <p style="font-size:.8125rem;letter-spacing:.1em;text-transform:uppercase">Loading project…</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <img id="lightbox-img" alt="" />
+  <button id="lightbox-close" aria-label="Close lightbox">✕</button>
+  <button id="lightbox-prev" aria-label="Previous image">←</button>
+  <button id="lightbox-next" aria-label="Next image">→</button>
+  <span id="lightbox-count" aria-live="polite"></span>
+</div>
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo" style="position:relative;z-index:10">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__brand-dot" aria-hidden="true"></span>
+        NekamiVisuals
+      </div>
+      <ul class="footer__links">
+        <li><a href="work.html">Work</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="footer__copy">© 2025 Neeraj Singh · NekamiVisuals</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+</style>
+
+<!-- ════════════════════ SCRIPTS ════════════════════ -->
+<script type="module">
+  import { initCursor }          from './js/cursor.js';
+  import { initNavbar }          from './js/navbar.js';
+  import { initPageTransitions } from './js/animations.js';
+  import { initProjectPage }     from './js/project.js';
+  import { initLightbox }        from './js/lightbox.js';
+
+  function initLenis() {
+    if (typeof Lenis === 'undefined') return;
+    const lenis = new Lenis({ duration: 1.35, easing: t => Math.min(1, 1.001 - Math.pow(2, -10*t)), smoothWheel: true });
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
+    }
+    window.__lenis = lenis;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initLenis();
+    initCursor();
+    initNavbar();
+    initPageTransitions();
+    initLightbox();
+    initProjectPage();
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+'use client';
+
+import { useState, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
+import { voiceCategories } from '@/data';
+import type { Project } from '@/types';
+
+// Voice project samples
+const voiceProjects: Project[] = [
+  {
+    id: 'documentary-narration-wild',
+    title: 'Voice of Wilderness',
+    slug: 'voice-of-wilderness',
+    category: 'voice', subcategory: 'narration',
+    thumbnail: '/images/project-02.jpg',
+    gallery: ['/images/project-02.jpg'],
+    client: 'WildVision Media',
+    description: 'Full narration for a 22-minute wildlife documentary.',
+    overview: '',  challenge: '',  process: {},
+    software: ['audition'],
+    tags: ['narration', 'documentary'],
+    language: 'English', duration: '22:00',
+    voiceType: 'Warm Authoritative',
+    year: 2025, featured: true, popular: true,
+    status: 'published', order: 1,
+  },
+  {
+    id: 'commercial-voice-tech',
+    title: 'Tech Startup Commercial',
+    slug: 'tech-startup-commercial',
+    category: 'voice', subcategory: 'commercial',
+    thumbnail: '/images/project-05.jpg',
+    gallery: ['/images/project-05.jpg'],
+    client: 'InnovateTech',
+    description: '60-second commercial voiceover for a SaaS platform launch.',
+    overview: '', challenge: '', process: {},
+    software: ['audition'],
+    tags: ['commercial', 'tech'],
+    language: 'English', duration: '0:60',
+    voiceType: 'Confident & Clear',
+    year: 2025, featured: false, popular: true,
+    status: 'published', order: 2,
+  },
+  {
+    id: 'explainer-saas-demo',
+    title: 'SaaS Product Explainer',
+    slug: 'saas-product-explainer',
+    category: 'voice', subcategory: 'explainer',
+    thumbnail: '/images/project-01.jpg',
+    gallery: ['/images/project-01.jpg'],
+    client: 'CloudFlow Inc.',
+    description: 'Engaging explainer voiceover for a SaaS product demo video.',
+    overview: '', challenge: '', process: {},
+    software: ['audition', 'premiere'],
+    tags: ['explainer', 'saas'],
+    language: 'English', duration: '3:20',
+    voiceType: 'Friendly & Professional',
+    year: 2025, featured: false, popular: false,
+    status: 'published', order: 3,
+  },
+  {
+    id: 'podcast-intro-creative',
+    title: 'Creative Minds Podcast',
+    slug: 'creative-minds-podcast',
+    category: 'voice', subcategory: 'podcast',
+    thumbnail: '/images/project-03.jpg',
+    gallery: ['/images/project-03.jpg'],
+    client: 'Soundwave Studios',
+    description: 'Podcast intro and bumper voiceovers for a weekly creative show.',
+    overview: '', challenge: '', process: {},
+    software: ['audition'],
+    tags: ['podcast', 'intro'],
+    language: 'English', duration: '0:45',
+    voiceType: 'Energetic',
+    year: 2025, featured: false, popular: false,
+    status: 'published', order: 4,
+  },
+];
+
+const styleColors: Record<string, string> = {
+  'Warm Authoritative': 'border-amber-500/25 text-amber-400/80 bg-amber-500/10',
+  'Confident & Clear': 'border-blue-500/25 text-blue-400/80 bg-blue-500/10',
+  'Friendly & Professional': 'border-green-500/25 text-green-400/80 bg-green-500/10',
+  'Energetic': 'border-purple-500/25 text-purple-400/80 bg-purple-500/10',
+};
+
+export function VoiceGallery() {
+  const [active, setActive] = useState('all');
+
+  const filtered = voiceProjects.filter(p =>
+    active === 'all' ? true : p.subcategory === active
+  );
+
+  return (
+    <section className="py-16 md:py-24" aria-label="Voice portfolio">
+      <div className="container">
+        {/* Filters */}
+        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter voice projects">
+          {voiceCategories.map(cat => (
+            <button
+              key={cat.value}
+              onClick={() => setActive(cat.value)}
+              className={cn('filter-pill', active === cat.value && 'active')}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          {filtered.map((project, i) => (
+            <VoiceCard key={project.id} project={project} delay={i * 60} />
+          ))}
+        </div>
+
+        {filtered.length === 0 && (
+          <div className="flex flex-col items-center gap-4 py-24 text-center">
+            <span className="text-3xl">🎙️</span>
+            <p className="text-text-2 font-semibold">No voice projects in this category yet.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function VoiceCard({ project, delay }: { project: Project; delay: number }) {
+  const [playing, setPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!audioRef.current) return;
+    if (playing) { audioRef.current.pause(); }
+    else { audioRef.current.play(); }
+    setPlaying(!playing);
+  };
+
+  const badgeClass = styleColors[project.voiceType ?? ''] ?? 'border-border text-text-3 bg-transparent';
+
+  return (
+    <article
+      className="group bg-card border border-border rounded-xl overflow-hidden hover:border-border-hover hover:-translate-y-1 hover:shadow-2xl transition-all duration-400 ease-out-expo"
+      style={{ animationDelay: `${delay}ms` }}
+      data-cursor="listen"
+    >
+      <Link href={`/voice/${project.slug}`} className="block">
+        {/* Cover */}
+        <div className="relative aspect-video overflow-hidden">
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent" />
+
+          {/* Waveform overlay */}
+          <div className="absolute bottom-3 left-3 right-3 flex items-end gap-0.5 h-8">
+            {Array.from({ length: 32 }).map((_, i) => {
+              const h = Math.sin(i * 0.8) * 0.5 + 0.5;
+              return (
+                <div
+                  key={i}
+                  className={cn('flex-1 bg-white/30 rounded-sm origin-bottom', playing && 'animate-waveform')}
+                  style={{
+                    height: `${20 + h * 80}%`,
+                    animationDelay: `${i * 40}ms`,
+                  }}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Body */}
+        <div className="p-5">
+          {/* Voice style badge */}
+          {project.voiceType && (
+            <span className={cn('inline-block text-2xs font-semibold tracking-widest uppercase border rounded-full px-2.5 py-1 mb-3', badgeClass)}>
+              {project.voiceType}
+            </span>
+          )}
+
+          <h3 className="font-semibold tracking-tight text-base mb-1 group-hover:-translate-y-0.5 transition-transform duration-300">
+            {project.title}
+          </h3>
+          <p className="text-xs text-text-3 mb-4">{project.client}</p>
+
+          {/* Meta row */}
+          <div className="flex items-center justify-between text-xs text-text-3 border-t border-border/50 pt-4">
+            <span>{project.language ?? 'English'}</span>
+            <span>{project.subcategory}</span>
+            <span>{project.duration}</span>
+          </div>
+        </div>
+      </Link>
+
+      {/* Play button — outside the Link to prevent double navigation */}
+      <div className="px-5 pb-5 -mt-2">
+        <button
+          onClick={togglePlay}
+          className="w-full flex items-center justify-center gap-2.5 py-2.5 rounded-full border border-border/70 text-xs font-semibold tracking-wider uppercase hover:border-border-hover hover:bg-white/5 transition-all duration-250"
+          aria-label={playing ? `Pause ${project.title}` : `Play ${project.title} preview`}
+        >
+          {playing ? (
+            <>
+              <div className="waveform" aria-hidden="true">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <div key={i} className="waveform-bar" style={{ height: `${8 + Math.random() * 10}px` }} />
+                ))}
+              </div>
+              Pause Preview
+            </>
+          ) : (
+            <>▶ Play Preview</>
+          )}
+        </button>
+        {project.audioUrl && (
+          <audio ref={audioRef} src={project.audioUrl} onEnded={() => setPlaying(false)} />
+        )}
+      </div>
+    </article>
+  );
+}

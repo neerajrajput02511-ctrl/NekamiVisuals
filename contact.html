@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — NekamiVisuals</title>
+  <meta name="description" content="Get in touch with NekamiVisuals. Let's create something extraordinary together — video editing, voice artistry or graphic design." />
+  <meta property="og:title"       content="Contact — NekamiVisuals" />
+  <meta property="og:description" content="Let's create something extraordinary together." />
+  <meta property="og:image"       content="assets/images/project-01.jpg" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/cursor.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+</head>
+<body>
+
+<div class="page-overlay" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true">
+  <div class="cursor__ring"></div>
+  <div class="cursor__dot"></div>
+</div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- Navbar -->
+<header class="navbar" role="banner">
+  <a href="index.html" class="navbar__logo" aria-label="NekamiVisuals Home">
+    <span class="navbar__logo-dot" aria-hidden="true"></span>
+    NekamiVisuals
+  </a>
+  <nav class="navbar__nav" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+  <div class="navbar__right">
+    <a href="contact.html" class="btn-hire">Hire Me</a>
+    <button class="navbar__toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="navbar__mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="work.html">Work</a>
+  <a href="achievements.html">Achievements</a>
+  <a href="contact.html">Contact</a>
+  <div class="navbar__mobile-bottom">
+    <a href="contact.html" class="btn-hire">Hire Me →</a>
+    <span class="navbar__mobile-copy">©2025 NekamiVisuals</span>
+  </div>
+</nav>
+
+<main>
+
+  <!-- Page Hero -->
+  <section class="page-hero" aria-labelledby="contact-page-title">
+    <div class="container">
+      <div class="page-hero__label">
+        <span class="section-label">Get in Touch</span>
+      </div>
+      <h1 id="contact-page-title">Let's build<br>something <em style="font-weight:300;color:var(--text-2)">together.</em></h1>
+      <p class="page-hero__desc">
+        Whether you have a detailed brief or a rough idea — I'd love to
+        hear about your project and explore how we can bring it to life.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-page" aria-label="Contact form and information">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Left — Info -->
+        <div class="contact-info">
+
+          <div class="availability-badge" aria-label="Currently available for freelance work">
+            <span class="availability-badge__dot" aria-hidden="true"></span>
+            Available for projects
+          </div>
+
+          <span class="section-label" style="display:inline-flex;margin-bottom:1.25rem">Contact</span>
+          <h2>Say hello,<br>I don't bite.</h2>
+          <p>
+            I'm open to freelance projects, collaborations and creative
+            partnerships. Fill in the form or reach out directly — I typically
+            respond within 24 hours.
+          </p>
+
+          <div class="contact-details">
+
+            <a href="mailto:neeraj@nekamivisuals.com" class="contact-item" aria-label="Send email to NekamiVisuals">
+              <div class="contact-item__icon" aria-hidden="true">✉</div>
+              <div>
+                <small>Email</small>
+                <span>neeraj@nekamivisuals.com</span>
+              </div>
+            </a>
+
+            <a href="tel:+919999999999" class="contact-item" aria-label="Call NekamiVisuals">
+              <div class="contact-item__icon" aria-hidden="true">📞</div>
+              <div>
+                <small>Phone / WhatsApp</small>
+                <span>+91 99999 99999</span>
+              </div>
+            </a>
+
+            <div class="contact-item" aria-label="Based in India">
+              <div class="contact-item__icon" aria-hidden="true">📍</div>
+              <div>
+                <small>Location</small>
+                <span>India · Available Worldwide</span>
+              </div>
+            </div>
+
+            <div class="contact-item" aria-label="Response time">
+              <div class="contact-item__icon" aria-hidden="true">⚡</div>
+              <div>
+                <small>Response Time</small>
+                <span>Within 24 hours</span>
+              </div>
+            </div>
+
+          </div><!-- /contact-details -->
+
+          <!-- Social links -->
+          <div class="social-links" role="list" aria-label="Social media links">
+            <a href="#" class="social-link" role="listitem">↗ YouTube</a>
+            <a href="#" class="social-link" role="listitem">↗ Instagram</a>
+            <a href="#" class="social-link" role="listitem">↗ LinkedIn</a>
+            <a href="#" class="social-link" role="listitem">↗ Behance</a>
+          </div>
+
+        </div><!-- /contact-info -->
+
+        <!-- Right — Form -->
+        <div>
+          <form class="contact-form" novalidate aria-label="Project inquiry form" id="contact-form">
+
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="name" name="name" placeholder=" " required autocomplete="name" />
+                <label for="name">Your Name *</label>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" name="email" placeholder=" " required autocomplete="email" />
+                <label for="email">Email Address *</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="text" id="subject" name="subject" placeholder=" " />
+              <label for="subject">Project Title</label>
+            </div>
+
+            <div class="form-group">
+              <select id="service" name="service" required>
+                <option value="" disabled selected></option>
+                <option value="video">Video Editing</option>
+                <option value="voice">Voice Artistry</option>
+                <option value="design">Graphic Design</option>
+                <option value="multiple">Multiple Services</option>
+                <option value="other">Other</option>
+              </select>
+              <label for="service" style="pointer-events:none;position:absolute;top:1.125rem;left:1.25rem;font-size:0.875rem;color:var(--text-3);transition:.18s;z-index:1">Service Needed *</label>
+            </div>
+
+            <div class="form-group">
+              <input type="text" id="budget" name="budget" placeholder=" " />
+              <label for="budget">Estimated Budget (optional)</label>
+            </div>
+
+            <div class="form-group">
+              <textarea id="message" name="message" placeholder=" " required></textarea>
+              <label for="message">Tell me about your project *</label>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submit-btn">
+              Send Message ↗
+            </button>
+
+            <p class="form-note">
+              Your information is private and will never be shared.
+            </p>
+
+          </form>
+        </div>
+
+      </div><!-- /contact-layout -->
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="section-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">Let's create together <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Premium creative work <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Video · Voice · Design <span class="marquee-sep"></span></div>
+      <div class="marquee-item">NekamiVisuals <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Available worldwide <span class="marquee-sep"></span></div>
+      <!-- Duplicate -->
+      <div class="marquee-item">Let's create together <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Premium creative work <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Video · Voice · Design <span class="marquee-sep"></span></div>
+      <div class="marquee-item">NekamiVisuals <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Available worldwide <span class="marquee-sep"></span></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__brand-dot" aria-hidden="true"></span>
+        NekamiVisuals
+      </div>
+      <ul class="footer__links">
+        <li><a href="work.html">Work</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="footer__copy">© 2025 Neeraj Singh · NekamiVisuals</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Handle select label fix -->
+<script>
+  const sel = document.getElementById('service');
+  const selLabel = sel ? sel.nextElementSibling : null;
+  if (sel && selLabel) {
+    function updateSelectLabel() {
+      if (sel.value) {
+        selLabel.style.top = '0.425rem';
+        selLabel.style.fontSize = '0.625rem';
+        selLabel.style.letterSpacing = '0.1em';
+        selLabel.style.textTransform = 'uppercase';
+      } else {
+        selLabel.style.top = '1.125rem';
+        selLabel.style.fontSize = '0.875rem';
+        selLabel.style.letterSpacing = '';
+        selLabel.style.textTransform = '';
+      }
+    }
+    sel.addEventListener('change', updateSelectLabel);
+  }
+</script>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

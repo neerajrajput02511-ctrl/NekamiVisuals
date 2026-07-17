@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NekamiVisuals — Creative Freelancer · Video Editing, Voice & Design</title>
+  <meta name="description" content="NekamiVisuals is the creative studio of Neeraj Singh. Cinematic video editing, professional voice artistry, and impactful graphic design for brands, creators and businesses worldwide." />
+  <meta name="keywords" content="NekamiVisuals, Neeraj Singh, video editing, voice artist, graphic design, creative freelancer, cinematic, premium" />
+  <meta name="author" content="Neeraj Singh — NekamiVisuals" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://nekamivisuals.com/" />
+  <meta property="og:title"       content="NekamiVisuals — Creating Visual Stories That Leave an Impression" />
+  <meta property="og:description" content="Cinematic video editing, professional voice artistry and impactful graphic design for brands, creators and businesses." />
+  <meta property="og:image"       content="assets/images/project-01.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="NekamiVisuals — Creative Freelancer" />
+  <meta name="twitter:description" content="Cinematic video editing, voice artistry & design." />
+  <meta name="twitter:image"       content="assets/images/project-01.jpg" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Neeraj Singh",
+    "url": "https://nekamivisuals.com",
+    "jobTitle": "Creative Freelancer",
+    "brand": { "@type": "Brand", "name": "NekamiVisuals" },
+    "knowsAbout": ["Video Editing", "Voice Artistry", "Graphic Design"]
+  }
+  </script>
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/work.css" />
+  <link rel="stylesheet" href="css/cursor.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+  PAGE TRANSITION OVERLAY
+════════════════════════════════════════════ -->
+<div class="page-overlay" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════
+  CUSTOM CURSOR
+════════════════════════════════════════════ -->
+<div class="cursor" aria-hidden="true">
+  <div class="cursor__ring"></div>
+  <div class="cursor__dot"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  SCROLL PROGRESS
+════════════════════════════════════════════ -->
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════
+  NAVBAR
+════════════════════════════════════════════ -->
+<header class="navbar" role="banner">
+  <a href="index.html" class="navbar__logo" aria-label="NekamiVisuals Home">
+    <span class="navbar__logo-dot" aria-hidden="true"></span>
+    NekamiVisuals
+  </a>
+
+  <nav class="navbar__nav" aria-label="Primary navigation">
+    <a href="index.html" class="active">Home</a>
+    <a href="work.html">Work</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="navbar__right">
+    <a href="contact.html" class="btn-hire">Hire Me</a>
+    <button class="navbar__toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<nav class="navbar__mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="work.html">Work</a>
+  <a href="achievements.html">Achievements</a>
+  <a href="contact.html">Contact</a>
+  <div class="navbar__mobile-bottom">
+    <a href="contact.html" class="btn-hire">Hire Me →</a>
+    <span class="navbar__mobile-copy">©2025 NekamiVisuals</span>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+  HERO SECTION
+════════════════════════════════════════════ -->
+<main>
+  <section class="hero" aria-label="Hero">
+
+    <!-- Particle canvas background -->
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+    <!-- Cinematic overlay -->
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <!-- Corner labels -->
+    <span class="hero__corner hero__corner--tl" aria-hidden="true">Neeraj Singh</span>
+    <span class="hero__corner hero__corner--tr" aria-hidden="true">©&thinsp;2025</span>
+
+    <!-- Content -->
+    <div class="hero__content">
+      <p class="hero__eyebrow" aria-label="NekamiVisuals Creative Studio">
+        NekamiVisuals&ensp;·&ensp;Creative Studio
+      </p>
+
+      <h1 class="hero__title">
+        <span class="line"><span>Creating Visual</span></span>
+        <span class="line"><span>Stories That <em>Leave</em></span></span>
+        <span class="line"><span>an Impression.</span></span>
+      </h1>
+
+      <p class="hero__desc">
+        NekamiVisuals helps creators, brands and businesses elevate their content
+        through cinematic video editing, professional voice artistry and
+        impactful graphic design.
+      </p>
+
+      <div class="hero__actions">
+        <a href="work.html" class="btn btn-primary btn-arrow">Explore Work</a>
+        <a href="contact.html" class="btn btn-ghost">Hire Me</a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll" aria-hidden="true">
+      <span class="hero__scroll-text">Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+    FEATURED WORK SECTION
+  ════════════════════════════════════════════ -->
+  <section class="section-work" aria-labelledby="work-heading">
+    <div class="container">
+
+      <div class="section-work__header">
+        <div class="section-work__header-left">
+          <span class="section-label">Selected Work</span>
+          <h2 id="work-heading">Crafted with<br>intention.</h2>
+        </div>
+        <div class="section-work__header-right">
+          <p>Every project is a story. Every frame, a decision. Here's a selection of work that defines NekamiVisuals.</p>
+          <a href="work.html" class="btn btn-ghost btn-arrow" style="display:inline-flex;">View All Work</a>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="work-grid">
+
+        <!-- Card 1 -->
+        <article class="work-card" data-category="video" role="link" tabindex="0"
+          onclick="location.href='project.html?id=cinematic-brand-reveal'" style="cursor:none">
+          <div class="work-card__media">
+            <img src="assets/images/project-01.jpg" alt="Cinematic Brand Reveal" loading="lazy" />
+            <div class="work-card__hover" aria-hidden="true">
+              <div class="work-card__hover-title">Cinematic Brand Reveal</div>
+              <div class="work-card__hover-cat">Video Editing</div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__name">Cinematic Brand Reveal</span>
+            <span class="work-card__tag">Video</span>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="work-card" data-category="voice" role="link" tabindex="0"
+          onclick="location.href='project.html?id=documentary-narration-wild'" style="cursor:none">
+          <div class="work-card__media">
+            <img src="assets/images/project-02.jpg" alt="Voice of Wilderness" loading="lazy" />
+            <div class="work-card__hover" aria-hidden="true">
+              <div class="work-card__hover-title">Voice of Wilderness</div>
+              <div class="work-card__hover-cat">Voice Artistry</div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__name">Voice of Wilderness</span>
+            <span class="work-card__tag">Voice</span>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="work-card" data-category="video" role="link" tabindex="0"
+          onclick="location.href='project.html?id=documentary-deep-dive'" style="cursor:none">
+          <div class="work-card__media">
+            <img src="assets/images/project-03.jpg" alt="Editorial Motion Reel" loading="lazy" />
+            <div class="work-card__hover" aria-hidden="true">
+              <div class="work-card__hover-title">Editorial Motion Reel</div>
+              <div class="work-card__hover-cat">Video Editing</div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__name">Editorial Motion Reel</span>
+            <span class="work-card__tag">Video</span>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="work-card" data-category="design" role="link" tabindex="0"
+          onclick="location.href='project.html?id=luxury-brand-identity'" style="cursor:none">
+          <div class="work-card__media">
+            <img src="assets/images/project-04.jpg" alt="Luxury Brand Identity" loading="lazy" />
+            <div class="work-card__hover" aria-hidden="true">
+              <div class="work-card__hover-title">Luxury Brand Identity</div>
+              <div class="work-card__hover-cat">Graphic Design</div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__name">Luxury Brand Identity</span>
+            <span class="work-card__tag">Design</span>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="work-card" data-category="voice" role="link" tabindex="0"
+          onclick="location.href='project.html?id=commercial-voice-tech'" style="cursor:none">
+          <div class="work-card__media">
+            <img src="assets/images/project-05.jpg" alt="Documentary Narration" loading="lazy" />
+            <div class="work-card__hover" aria-hidden="true">
+              <div class="work-card__hover-title">Documentary Narration</div>
+              <div class="work-card__hover-cat">Voice Artistry</div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__name">Documentary Narration</span>
+            <span class="work-card__tag">Voice</span>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="work-card" data-category="design" role="link" tabindex="0"
+          onclick="location.href='project.html?id=kinetic-typography'" style="cursor:none">
+          <div class="work-card__media">
+            <img src="assets/images/project-06.jpg" alt="Kinetic Typography" loading="lazy" />
+            <div class="work-card__hover" aria-hidden="true">
+              <div class="work-card__hover-title">Kinetic Typography</div>
+              <div class="work-card__hover-cat">Graphic Design</div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <span class="work-card__name">Kinetic Typography</span>
+            <span class="work-card__tag">Design</span>
+          </div>
+        </article>
+
+      </div><!-- /work-grid -->
+
+      <div class="work-viewall">
+        <a href="work.html" class="work-viewall__link">
+          View complete portfolio
+          <span class="work-viewall__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+    SERVICES STRIP
+  ════════════════════════════════════════════ -->
+  <section class="section-services" aria-label="Services">
+    <div class="container" style="padding-left:0;padding-right:0;max-width:100%">
+      <div class="services-strip">
+
+        <div class="service-item">
+          <span class="service-item__num">01</span>
+          <div class="service-item__body">
+            <h3>Video Editing</h3>
+            <p>Cinematic cuts, colour grading, motion graphics and storytelling that transform raw footage into compelling content.</p>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <span class="service-item__num">02</span>
+          <div class="service-item__body">
+            <h3>Voice Artistry</h3>
+            <p>Professional narration, character voices and commercial reads delivered with clarity, warmth and intention.</p>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <span class="service-item__num">03</span>
+          <div class="service-item__body">
+            <h3>Graphic Design</h3>
+            <p>Brand identities, social visuals, thumbnails and layouts crafted to capture attention and communicate with precision.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+    MARQUEE
+  ════════════════════════════════════════════ -->
+  <div class="section-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">Video Editing <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Voice Artistry <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Graphic Design <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Motion Design <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Brand Identity <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Colour Grading <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Narration <span class="marquee-sep"></span></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item">Video Editing <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Voice Artistry <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Graphic Design <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Motion Design <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Brand Identity <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Colour Grading <span class="marquee-sep"></span></div>
+      <div class="marquee-item">Narration <span class="marquee-sep"></span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+    ABOUT PREVIEW
+  ════════════════════════════════════════════ -->
+  <section class="section-about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-left">
+          <span class="section-label">Who We Are</span>
+          <h2 id="about-heading">Who is behind<br>NekamiVisuals?</h2>
+          <p>
+            I help brands, creators and businesses transform ideas into
+            engaging visual experiences through storytelling, editing,
+            voice and design. Every project is personal — precision meets passion.
+          </p>
+          <a href="work.html" class="btn btn-ghost btn-arrow" style="display:inline-flex">View My Work</a>
+        </div>
+
+        <div class="about-right">
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="about-stat__num">50+</div>
+              <div class="about-stat__label">Projects delivered</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat__num">3</div>
+              <div class="about-stat__label">Creative disciplines</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat__num">5★</div>
+              <div class="about-stat__label">Client satisfaction</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat__num">∞</div>
+              <div class="about-stat__label">Stories to tell</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+    CTA SECTION
+  ════════════════════════════════════════════ -->
+  <section class="section-cta" aria-label="Call to Action">
+    <div class="container">
+      <div class="section-cta__inner">
+        <div class="section-cta__label">
+          <span class="section-label">Let's Collaborate</span>
+        </div>
+        <h2>Let's create something<br><em>extraordinary</em> together.</h2>
+        <a href="contact.html" class="btn btn-primary btn-arrow" style="font-size:1rem;padding:1.1rem 2.5rem;">
+          Start Your Project
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+  FOOTER
+════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__brand-dot" aria-hidden="true"></span>
+        NekamiVisuals
+      </div>
+      <ul class="footer__links">
+        <li><a href="work.html">Work</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="footer__copy">© 2025 Neeraj Singh · NekamiVisuals</p>
+    </div>
+  </div>
+</footer>
+
+<!-- JS Module -->
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
