@@ -10,7 +10,7 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { label: 'Email',     href: 'mailto:neeraj@nekamivisuals.com', icon: Mail },
+  { label: 'Email',     href: 'mailto:neerajrajput02511@gmail.com', icon: Mail },
   { label: 'Instagram', href: 'https://instagram.com/nekamivisuals', icon: Instagram },
   { label: 'LinkedIn',  href: 'https://linkedin.com/in/neerajsingh', icon: Linkedin },
   { label: 'YouTube',   href: 'https://youtube.com/@nekamivisuals', icon: Youtube },

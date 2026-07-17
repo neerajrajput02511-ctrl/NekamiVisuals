@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Mail, Phone, MessageCircle, Instagram, Linkedin, Youtube, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MessageCircle, Instagram, Linkedin, Youtube, ExternalLink, CheckCircle2, MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { createClient } from '@/lib/supabase/client';
 
@@ -29,7 +29,8 @@ const budgets = [
   '$1,000 – $5,000', '$5,000+', 'Let\'s discuss',
 ];
 const contacts = [
-  { label: 'Email', value: 'neeraj@nekamivisuals.com', href: 'mailto:neeraj@nekamivisuals.com', icon: Mail },
+  { label: 'Email', value: 'neerajrajput02511@gmail.com', href: 'mailto:neerajrajput02511@gmail.com', icon: Mail },
+  { label: 'Location', value: 'Sector 149, Noida, Uttar Pradesh, India', href: 'https://maps.google.com/?q=Sector+149,+Noida,+Uttar+Pradesh,+India', icon: MapPin },
   { label: 'WhatsApp', value: '+91 99999 99999', href: 'https://wa.me/919999999999', icon: Phone },
   { label: 'Instagram', value: '@nekamivisuals', href: 'https://instagram.com/nekamivisuals', icon: Instagram },
   { label: 'LinkedIn', value: 'Neeraj Singh', href: 'https://linkedin.com/in/neerajsingh', icon: Linkedin },

@@ -54,7 +54,7 @@ export const defaultSettings: WebsiteSettings = {
   heroHeading: 'Creating Visual Stories That Leave an Impression.',
   heroDescription: 'NekamiVisuals helps creators, brands and businesses elevate their content through cinematic video editing, professional voice artistry and impactful graphic design.',
   ctaText: 'Explore Work',
-  email: 'neeraj@nekamivisuals.com',
+  email: 'neerajrajput02511@gmail.com',
   whatsapp: '+919999999999',
   instagram: 'https://instagram.com/nekamivisuals',
   youtube: 'https://youtube.com/@nekamivisuals',
