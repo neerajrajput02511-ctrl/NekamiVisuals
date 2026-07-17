@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mail, Instagram, Linkedin, Youtube, ExternalLink } from 'lucide-react';
 
 const footerLinks = [
@@ -22,9 +23,8 @@ export function Footer() {
     <footer className="pt-[4rem] pb-[2rem] border-t border-border" role="contentinfo">
       <div className="container">
         <div className="flex flex-wrap items-center justify-between gap-8">
-          <div className="flex items-center gap-[0.375rem] font-bold text-[0.9375rem] tracking-[-0.04em]">
-            <span className="w-[5px] h-[5px] rounded-full bg-text" />
-            NekamiVisuals
+          <div className="relative w-[130px] h-[40px]">
+            <Image src="/images/logo.jpg" alt="NekamiVisuals Logo" fill className="object-contain mix-blend-screen" />
           </div>
 
           <div className="flex items-center gap-8 flex-wrap">

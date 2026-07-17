@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -59,9 +60,8 @@ export function Navbar() {
       >
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-semibold text-sm tracking-tight group" aria-label="NekamiVisuals Home">
-            <span className="w-1.5 h-1.5 rounded-full bg-white group-hover:scale-150 transition-transform duration-300" />
-            NekamiVisuals
+          <Link href="/" className="flex items-center group relative w-[130px] h-[40px]" aria-label="NekamiVisuals Home">
+            <Image src="/images/logo.jpg" alt="NekamiVisuals Logo" fill className="object-contain mix-blend-screen" priority />
           </Link>
 
           {/* Desktop nav */}
