@@ -50,10 +50,10 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          'fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-400 ease-out-expo',
-          'w-[92%] max-w-[1440px] h-[72px] rounded-xl',
-          'glass border border-border/50 bg-bg/80 backdrop-blur-xl',
-          'flex items-center px-6 md:px-10 lg:px-12'
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-out flex items-center h-[70px] px-[clamp(1.25rem,4.5vw,5rem)] border-b',
+          scrolled 
+            ? 'bg-[#050505]/70 backdrop-blur-[28px] saturate-[180%] border-border' 
+            : 'bg-transparent border-transparent'
         )}
         role="banner"
       >
@@ -65,13 +65,13 @@ export function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-10" aria-label="Primary navigation">
+          <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2 gap-[clamp(1.75rem,3vw,3rem)]" aria-label="Primary navigation">
             {navLinks.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'text-sm font-medium transition-colors duration-250',
+                  'text-[13px] font-medium tracking-wide transition-colors duration-250',
                   pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
                     ? 'text-text'
                     : 'text-text-3 hover:text-text-2'
@@ -86,7 +86,7 @@ export function Navbar() {
           <div className="flex items-center gap-8">
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center justify-center gap-1.5 h-[48px] lg:h-[52px] px-[24px] lg:px-[28px] whitespace-nowrap text-xs font-semibold tracking-wider uppercase border border-border rounded-full hover:border-border-hover hover:bg-white/5 transition-all duration-250"
+              className="hidden md:inline-flex items-center justify-center border border-border text-text-2 hover:text-text hover:border-border-hover hover:bg-white/5 transition-all duration-250 rounded-full px-[1.4rem] py-[0.55rem] text-[13px] font-medium whitespace-nowrap"
             >
               Hire Me
             </Link>

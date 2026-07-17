@@ -40,13 +40,13 @@ export function WorkGallery({ initialProjects = [] }: { initialProjects?: Projec
   const getSpan = (i: number) => spanPattern[i % spanPattern.length] ?? 6;
 
   return (
-    <section className="pb-[140px]" aria-label="Project gallery">
+    <section className="py-[clamp(4rem,8vw,7rem)] pb-[clamp(5rem,10vw,10rem)]" aria-label="Project gallery">
       <div className="container">
         {/* Controls block (Search & Filters) */}
         <div className="flex flex-col mb-[48px]">
           {/* Search */}
-          <div className="relative w-full max-w-[420px] mb-[48px]">
-            <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-text-3 pointer-events-none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+          <div className="relative flex-1 min-w-[200px] max-w-[320px] mb-[3rem]">
+            <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-text-3 pointer-events-none opacity-35" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
               <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
             </svg>
             <input
@@ -55,7 +55,7 @@ export function WorkGallery({ initialProjects = [] }: { initialProjects?: Projec
               value={query}
               onChange={e => setQuery(e.target.value)}
               aria-label="Search projects"
-              className="w-full h-[56px] pl-12 pr-4 rounded-[18px] text-base bg-card border border-border/70 placeholder:text-text-3 focus:border-border-hover transition-colors duration-250"
+              className="w-full py-[0.65rem] pr-[1rem] pl-[2.75rem] rounded-[100px] text-[0.8125rem] bg-card border border-border placeholder:text-text-3 focus:border-white/20 transition-colors duration-250 appearance-none"
             />
           </div>
 
@@ -67,9 +67,9 @@ export function WorkGallery({ initialProjects = [] }: { initialProjects?: Projec
                   key={cat.value}
                   onClick={() => setActive(cat.value)}
                   className={cn(
-                    'px-[28px] h-[52px] rounded-full font-semibold text-[14px] tracking-wider uppercase border transition-all duration-250',
+                    'px-[1.25rem] py-[0.5rem] rounded-[100px] font-medium text-[0.8rem] tracking-[0.03em] border transition-all duration-250 cursor-none',
                     active === cat.value 
-                      ? 'bg-white/10 border-white/20 text-white shadow-inner' 
+                      ? 'bg-white/10 border-white/20 text-text shadow-inner backdrop-blur-[12px]' 
                       : 'bg-transparent border-border text-text-3 hover:text-text-2 hover:border-border-hover'
                   )}
                 >
@@ -78,22 +78,22 @@ export function WorkGallery({ initialProjects = [] }: { initialProjects?: Projec
               ))}
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
               <div className="relative">
                 <select
                   value={sort}
                   onChange={e => setSort(e.target.value)}
                   aria-label="Sort projects"
-                  className="pl-4 pr-8 h-[52px] rounded-full bg-card border border-border/70 text-[14px] appearance-none"
+                  className="py-[0.65rem] pr-[2.25rem] pl-[1.125rem] rounded-[100px] bg-card border border-border text-text-2 text-[0.8rem] appearance-none cursor-none focus:border-white/20 transition-colors"
                 >
-                  <option value="featured">Featured</option>
-                  <option value="popular">Popular</option>
-                  <option value="newest">Newest</option>
-                  <option value="oldest">Oldest</option>
+                  <option value="featured" className="bg-bg-2">Featured</option>
+                  <option value="popular" className="bg-bg-2">Popular</option>
+                  <option value="newest" className="bg-bg-2">Newest</option>
+                  <option value="oldest" className="bg-bg-2">Oldest</option>
                 </select>
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-text-3 pointer-events-none text-xs">↓</span>
+                <span className="absolute right-[0.875rem] top-1/2 -translate-y-1/2 text-[0.75rem] text-text-3 pointer-events-none">↓</span>
               </div>
-              <span className="text-[14px] text-text-3 tracking-wider hidden md:block" aria-live="polite">
+              <span className="text-[0.75rem] text-text-3 tracking-[0.06em] whitespace-nowrap hidden md:block" aria-live="polite">
                 {filtered.length} Project{filtered.length !== 1 ? 's' : ''}
               </span>
             </div>
@@ -104,12 +104,13 @@ export function WorkGallery({ initialProjects = [] }: { initialProjects?: Projec
         {filtered.length === 0 ? (
           <EmptyState onReset={() => { setActive('all'); setQuery(''); }} />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px] xl:gap-[40px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[1.125rem] items-start">
             {filtered.map((project, i) => (
               <WorkCard
                 key={project.id}
                 project={project}
                 delay={i * 60}
+                span={getSpan(i)}
               />
             ))}
           </div>
@@ -119,19 +120,20 @@ export function WorkGallery({ initialProjects = [] }: { initialProjects?: Projec
   );
 }
 
-function WorkCard({ project, delay }: { project: Project; delay: number }) {
+function WorkCard({ project, delay, span }: { project: Project; delay: number; span?: number }) {
   return (
     <article
-      className="group relative bg-card border border-border rounded-[24px] overflow-hidden hover:border-border-hover hover:-translate-y-2 transition-all duration-500 ease-out-expo shadow-sm hover:shadow-2xl"
+      className="group relative bg-card border border-border rounded-[24px] overflow-hidden hover:border-border-hover hover:-translate-y-[5px] transition-all duration-500 ease-out shadow-sm hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)] cursor-none"
       style={{
         animationDelay: `${delay}ms`,
+        gridColumn: span ? `span ${span}` : 'span 6',
       }}
       data-cursor="view-project"
       role="listitem"
     >
-      <Link href={`/work/${project.slug}`} className="block p-[24px]" tabIndex={0}>
+      <Link href={`/work/${project.slug}`} className="block" tabIndex={0}>
         {/* Image */}
-        <div className="relative overflow-hidden rounded-[16px] aspect-video">
+        <div className="relative w-full aspect-[16/10] overflow-hidden bg-bg-2">
           <Image
             src={project.thumbnail}
             alt={project.title}
@@ -142,40 +144,33 @@ function WorkCard({ project, delay }: { project: Project; delay: number }) {
           />
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-
-          {/* Play / View icon */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-400">
-            <div className="w-14 h-14 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm flex items-center justify-center text-white text-xl scale-75 group-hover:scale-100 transition-transform duration-400 ease-out-expo">
-              {project.category === 'voice' ? '♪' : '▶'}
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-bg/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
           {/* Featured badge */}
           {project.featured && (
-            <div className="absolute top-3 right-3 px-2.5 py-1 text-2xs font-semibold tracking-widest uppercase border border-yellow-500/20 bg-yellow-500/10 text-yellow-400/80 rounded-full backdrop-blur-sm">
+            <div className="absolute top-[-1.5rem] right-[1.25rem] px-[0.625rem] py-[0.2rem] text-[0.625rem] font-semibold tracking-[0.14em] uppercase border border-yellow-500/20 bg-yellow-500/10 text-[#ffdc64]/85 rounded-full z-20">
               Featured
             </div>
           )}
         </div>
 
         {/* Body */}
-        <div className="pt-[24px]">
-          <div className="flex items-center justify-between mb-[16px]">
-            <span className="text-[14px] font-semibold tracking-widest uppercase text-text-3">
+        <div className="p-[1.25rem_1.375rem_1.375rem] border-t border-border relative">
+          <div className="flex items-center justify-between mb-[0.5rem]">
+            <span className="text-[0.625rem] font-semibold tracking-[0.16em] uppercase text-text-3">
               {project.category}
             </span>
-            <span className="text-[14px] text-text-3">{project.year}</span>
+            <span className="text-[0.625rem] font-normal text-text-3">{project.year}</span>
           </div>
-          <h3 className="font-semibold tracking-tight text-[24px] mb-[20px] leading-snug group-hover:-translate-y-0.5 transition-transform duration-500">
+          <h3 className="text-[clamp(0.9rem,1.5vw,1.0625rem)] font-semibold tracking-[-0.02em] text-text leading-[1.2] mb-[0.3rem] group-hover:-translate-y-[2px] transition-transform duration-300">
             {project.title}
           </h3>
-          <div className="mt-[20px]">
+          <div>
             {project.client && (
-              <p className="text-[16px] text-text-3">{project.client}</p>
+              <p className="text-[0.75rem] text-text-3 mb-[0.375rem]">{project.client}</p>
             )}
             {project.duration && (
-              <p className="text-[16px] text-text-3 mt-1 font-medium">{project.duration}</p>
+              <p className="text-[0.6875rem] text-text-3 font-medium tracking-[0.06em]">{project.duration}</p>
             )}
           </div>
         </div>
