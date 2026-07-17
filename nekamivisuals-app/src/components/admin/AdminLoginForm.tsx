@@ -4,10 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-// Placeholder credentials (will be replaced with Supabase Auth in Phase 4)
-const ADMIN_EMAIL = 'admin@nekamivisuals.com';
-const ADMIN_PASS  = 'NekamiAdmin2026!';
+import { createClient } from '@/lib/supabase/client';
 
 export function AdminLoginForm() {
   const router = useRouter();
@@ -21,14 +18,17 @@ export function AdminLoginForm() {
     e.preventDefault();
     setError('');
     setLoading(true);
-    await new Promise(r => setTimeout(r, 800));
+    const supabase = createClient();
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-    // Placeholder auth — Phase 4 replaces with Supabase
-    if (email === ADMIN_EMAIL && password === ADMIN_PASS) {
-      sessionStorage.setItem('nv_admin', '1');
+    if (!authError) {
       router.push('/admin/dashboard');
+      router.refresh();
     } else {
-      setError('Invalid credentials. Access denied.');
+      setError(authError.message || 'Invalid credentials. Access denied.');
     }
     setLoading(false);
   };

@@ -4,14 +4,23 @@ import Link from 'next/link';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CTASection } from '@/components/sections/CTASection';
-import { projects, softwareMap } from '@/data';
+import { softwareMap } from '@/data';
+import { createClient } from '@/lib/supabase/server';
+import type { Project } from '@/types';
 import type { Metadata } from 'next';
 import { ChevronLeft } from 'lucide-react';
 import { VoicePlayer } from '@/components/players/VoicePlayer';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
-  const project = projects.find(p => p.slug === resolvedParams.slug && p.category === 'voice');
+  const supabase = await createClient();
+  const { data: project } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('slug', resolvedParams.slug)
+    .eq('category', 'voice')
+    .single();
+
   if (!project) return {};
   return {
     title: `${project.title} — Voice Artist`,
@@ -21,13 +30,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function VoiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const project = projects.find(p => p.slug === resolvedParams.slug && p.category === 'voice');
-  if (!project) notFound();
+  const supabase = await createClient();
+  
+  const { data: projectData } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('slug', resolvedParams.slug)
+    .eq('category', 'voice')
+    .single();
+
+  if (!projectData) notFound();
+  const project = projectData as unknown as Project;
 
   // Find related voice projects
-  const related = projects
-    .filter(p => p.category === 'voice' && p.id !== project.id)
-    .slice(0, 3);
+  const { data: relatedData } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('category', 'voice')
+    .eq('status', 'published')
+    .neq('id', project.id)
+    .limit(3);
+
+  const related = (relatedData || []) as unknown as Project[];
 
   return (
     <>

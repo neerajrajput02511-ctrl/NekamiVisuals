@@ -6,19 +6,12 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { designCategories } from '@/data';
 
-const designProjects = [
-  { id: 'noir-and-co-identity', slug: 'noir-and-co-identity', title: 'Noir & Co. Identity', category: 'brand-identity', client: 'Noir & Co.', thumbnail: '/images/project-04.jpg', h: 'tall' },
-  { id: 'youtube-thumbnail-pack', slug: 'youtube-thumbnail-pack', title: 'YouTube Thumbnail Pack', category: 'thumbnail', client: 'ContentCreator Pro', thumbnail: '/images/project-06.jpg', h: 'short' },
-  { id: 'social-brand-kit', slug: 'social-brand-kit', title: 'Social Brand Kit', category: 'social-media', client: 'UrbanStyle Co.', thumbnail: '/images/project-01.jpg', h: 'medium' },
-  { id: 'event-poster-series', slug: 'event-poster-series', title: 'Event Poster Series', category: 'poster', client: 'Neon Nights Events', thumbnail: '/images/project-03.jpg', h: 'tall' },
-  { id: 'startup-logo', slug: 'startup-logo', title: 'Startup Logo Design', category: 'logo', client: 'Lumora Labs', thumbnail: '/images/project-05.jpg', h: 'short' },
-  { id: 'corporate-presentation', slug: 'corporate-presentation', title: 'Corporate Deck Design', category: 'presentation', client: 'Vertex Capital', thumbnail: '/images/project-02.jpg', h: 'medium' },
-];
+import type { Project } from '@/types';
 
-export function DesignGallery() {
+export function DesignGallery({ initialProjects = [] }: { initialProjects?: Project[] }) {
   const [active, setActive] = useState('all');
 
-  const filtered = designProjects.filter(p =>
+  const filtered = initialProjects.filter(p =>
     active === 'all' ? true : p.category === active
   );
 
@@ -47,7 +40,7 @@ export function DesignGallery() {
         ) : (
           <div className="masonry-grid">
             {filtered.map((project, i) => (
-              <DesignCard key={project.id} project={project} delay={i * 70} />
+              <DesignCard key={project.id} project={project} index={i} delay={i * 70} />
             ))}
           </div>
         )}
@@ -56,12 +49,13 @@ export function DesignGallery() {
   );
 }
 
-function DesignCard({ project, delay }: {
-  project: typeof designProjects[0];
+function DesignCard({ project, index, delay }: {
+  project: Project;
+  index: number;
   delay: number;
 }) {
-  const aspectMap = { short: '4/3', medium: '1/1', tall: '3/4' } as const;
-  const aspect = aspectMap[project.h as keyof typeof aspectMap] ?? '1/1';
+  const aspects = ['4/3', '1/1', '3/4', '16/9', '9/16'];
+  const aspect = aspects[index % aspects.length];
 
   return (
     <div className="masonry-item" style={{ animationDelay: `${delay}ms` }} data-cursor="view">

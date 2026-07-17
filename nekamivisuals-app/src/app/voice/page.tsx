@@ -4,27 +4,41 @@ import { Footer } from '@/components/layout/Footer';
 import { PageHeader } from '@/components/sections/PageHeader';
 import { VoiceGallery } from '@/components/sections/VoiceGallery';
 import { CTASection } from '@/components/sections/CTASection';
+import { createClient } from '@/lib/supabase/server';
+import type { Project } from '@/types';
 
 export const metadata: Metadata = {
   title: 'Voice Artist',
-  description: 'Professional voice performances crafted for brands, creators and businesses. Commercial narration, documentaries, explainers and more.',
+  description: 'Professional voice performances crafted for brands, creators and businesses.',
 };
 
-export default function VoicePage() {
+export const revalidate = 60;
+
+export default async function VoicePage() {
+  const supabase = await createClient();
+  const { data: projectsData } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('category', 'voice')
+    .eq('status', 'published')
+    .order('order', { ascending: true });
+
+  const projects = (projectsData || []) as unknown as Project[];
+
   return (
     <>
       <Navbar />
       <main>
         <PageHeader
-          label="Voice Artistry"
+          label="Voice Over"
           heading="Voice Artist."
-          description="Professional voice performances crafted for brands, creators and businesses — delivered with warmth, authority and precision."
+          description="Professional voice performances crafted for brands, creators and businesses."
         />
-        <VoiceGallery />
+        <VoiceGallery initialProjects={projects} />
         <CTASection
-          label="Book a Session"
-          heading="Need a professional voice for your project?"
-          cta="Get in Touch"
+          label="Let's Talk"
+          heading="Need a voice for your project?"
+          cta="Contact Me"
           href="/contact"
         />
       </main>

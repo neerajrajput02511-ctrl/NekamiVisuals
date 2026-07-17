@@ -3,16 +3,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { cn, stagger } from '@/lib/utils';
-import { projects, workCategories } from '@/data';
+import { cn } from '@/lib/utils';
+import { workCategories } from '@/data';
 import type { Project } from '@/types';
 
-export function WorkGallery() {
+export function WorkGallery({ initialProjects = [] }: { initialProjects?: Project[] }) {
   const [active, setActive] = useState('all');
   const [query,  setQuery]  = useState('');
   const [sort,   setSort]   = useState('featured');
 
-  const filtered = projects
+  const filtered = initialProjects
     .filter(p => {
       if (active === 'all') return true;
       if (active === 'video') return p.category === 'video';

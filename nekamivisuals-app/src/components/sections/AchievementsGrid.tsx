@@ -3,14 +3,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { achievements } from '@/data';
 import type { Achievement } from '@/types';
 import { X, Download, ExternalLink } from 'lucide-react';
 
-export function AchievementsGrid() {
+export function AchievementsGrid({ initialAchievements = [] }: { initialAchievements?: Achievement[] }) {
   const [selected, setSelected] = useState<Achievement | null>(null);
 
-  if (achievements.length === 0) {
+  if (initialAchievements.length === 0) {
     return <AchievementsEmptyState />;
   }
 
@@ -18,7 +17,7 @@ export function AchievementsGrid() {
     <section className="py-[120px] md:py-[160px]" aria-label="Achievements">
       <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {achievements.map((achievement, i) => (
+          {initialAchievements.map((achievement, i) => (
             <AchievementCard
               key={achievement.id}
               achievement={achievement}

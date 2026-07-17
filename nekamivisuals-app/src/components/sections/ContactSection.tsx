@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Mail, Phone, MessageCircle, Instagram, Linkedin, Youtube, ExternalLink, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { createClient } from '@/lib/supabase/client';
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -45,10 +46,28 @@ export function ContactSection() {
   });
 
   const onSubmit = async (data: FormData) => {
-    // Simulated submit (Supabase integration in Phase 4)
-    await new Promise(res => setTimeout(res, 1200));
-    console.log('Form submitted:', data);
-    setSubmitted(true);
+    try {
+      const supabase = createClient();
+      const { error } = await supabase
+        .from('messages')
+        .insert([{
+          name: data.name,
+          email: data.email,
+          country: data.country || null,
+          company: data.company || null,
+          service: data.service,
+          budget: data.budget || null,
+          deadline: data.deadline || null,
+          message: data.message,
+          status: 'unread'
+        }]);
+
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Failed to submit message:', err);
+      alert('There was an error sending your message. Please try again.');
+    }
   };
 
   return (

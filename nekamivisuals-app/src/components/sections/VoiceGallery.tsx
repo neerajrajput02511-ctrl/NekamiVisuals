@@ -7,78 +7,6 @@ import { cn } from '@/lib/utils';
 import { voiceCategories } from '@/data';
 import type { Project } from '@/types';
 
-// Voice project samples
-const voiceProjects: Project[] = [
-  {
-    id: 'documentary-narration-wild',
-    title: 'Voice of Wilderness',
-    slug: 'voice-of-wilderness',
-    category: 'voice', subcategory: 'narration',
-    thumbnail: '/images/project-02.jpg',
-    gallery: ['/images/project-02.jpg'],
-    client: 'WildVision Media',
-    description: 'Full narration for a 22-minute wildlife documentary.',
-    overview: '',  challenge: '',  process: {},
-    software: ['audition'],
-    tags: ['narration', 'documentary'],
-    language: 'English', duration: '22:00',
-    voiceType: 'Warm Authoritative',
-    year: 2025, featured: true, popular: true,
-    status: 'published', order: 1,
-  },
-  {
-    id: 'commercial-voice-tech',
-    title: 'Tech Startup Commercial',
-    slug: 'tech-startup-commercial',
-    category: 'voice', subcategory: 'commercial',
-    thumbnail: '/images/project-05.jpg',
-    gallery: ['/images/project-05.jpg'],
-    client: 'InnovateTech',
-    description: '60-second commercial voiceover for a SaaS platform launch.',
-    overview: '', challenge: '', process: {},
-    software: ['audition'],
-    tags: ['commercial', 'tech'],
-    language: 'English', duration: '0:60',
-    voiceType: 'Confident & Clear',
-    year: 2025, featured: false, popular: true,
-    status: 'published', order: 2,
-  },
-  {
-    id: 'explainer-saas-demo',
-    title: 'SaaS Product Explainer',
-    slug: 'saas-product-explainer',
-    category: 'voice', subcategory: 'explainer',
-    thumbnail: '/images/project-01.jpg',
-    gallery: ['/images/project-01.jpg'],
-    client: 'CloudFlow Inc.',
-    description: 'Engaging explainer voiceover for a SaaS product demo video.',
-    overview: '', challenge: '', process: {},
-    software: ['audition', 'premiere'],
-    tags: ['explainer', 'saas'],
-    language: 'English', duration: '3:20',
-    voiceType: 'Friendly & Professional',
-    year: 2025, featured: false, popular: false,
-    status: 'published', order: 3,
-  },
-  {
-    id: 'podcast-intro-creative',
-    title: 'Creative Minds Podcast',
-    slug: 'creative-minds-podcast',
-    category: 'voice', subcategory: 'podcast',
-    thumbnail: '/images/project-03.jpg',
-    gallery: ['/images/project-03.jpg'],
-    client: 'Soundwave Studios',
-    description: 'Podcast intro and bumper voiceovers for a weekly creative show.',
-    overview: '', challenge: '', process: {},
-    software: ['audition'],
-    tags: ['podcast', 'intro'],
-    language: 'English', duration: '0:45',
-    voiceType: 'Energetic',
-    year: 2025, featured: false, popular: false,
-    status: 'published', order: 4,
-  },
-];
-
 const styleColors: Record<string, string> = {
   'Warm Authoritative': 'border-amber-500/25 text-amber-400/80 bg-amber-500/10',
   'Confident & Clear': 'border-blue-500/25 text-blue-400/80 bg-blue-500/10',
@@ -86,10 +14,11 @@ const styleColors: Record<string, string> = {
   'Energetic': 'border-purple-500/25 text-purple-400/80 bg-purple-500/10',
 };
 
-export function VoiceGallery() {
+export function VoiceGallery({ initialProjects = [] }: { initialProjects?: Project[] }) {
   const [active, setActive] = useState('all');
+  const [playing, setPlaying] = useState<string | null>(null);
 
-  const filtered = voiceProjects.filter(p =>
+  const filtered = initialProjects.filter(p =>
     active === 'all' ? true : p.subcategory === active
   );
 
